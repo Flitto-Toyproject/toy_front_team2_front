@@ -18,7 +18,7 @@ header {
   background: var(--color-white);
 }
 .header {
-  height: 50px;
+  height: 75px;
   display: flex;
   justify-content: space-between;
   align-items: center;
