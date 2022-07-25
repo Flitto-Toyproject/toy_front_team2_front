@@ -32,6 +32,12 @@
   --color-light-orange: #fff5e8;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+  background: var(--color-light-gray);
+}
+
 .div {
   background: var(--color-black);
 }
