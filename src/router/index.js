@@ -16,7 +16,8 @@ const routes = [
     component: LogIn,
   },
   {
-    path: '/main',
+    // 추후 수정필요
+    path: '/',
     name: 'Main',
     component: MainView,
   },

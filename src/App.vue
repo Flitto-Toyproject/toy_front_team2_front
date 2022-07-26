@@ -1,18 +1,15 @@
 <template>
   <div>
-    <router-link to="/login">LogIn</router-link> |
-    <router-link to="/main">Main</router-link>
     <router-view></router-view>
-    <div class="headline">제목</div>
   </div>
 </template>
 
 <style lang="scss">
 :root {
-  --font-size-h1: 48px;
-  --font-size-h2: 40px;
-  --font-size-h3: 32px;
-  --font-size-h4: 24px;
+  --font-size-h1: 32px;
+  --font-size-h2: 28px;
+  --font-size-h3: 24px;
+  --font-size-h4: 20px;
   --font-size-h5: 16px;
   --font-size-h6: 12px;
   --color-white: #ffffff;
