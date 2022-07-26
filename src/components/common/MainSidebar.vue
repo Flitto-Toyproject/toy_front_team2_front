@@ -51,7 +51,7 @@ li {
   display: flex;
   position: fixed;
   flex-direction: column;
-  width: 13%;
+  width: 260px;
   height: 80%;
   padding: 0rem 2rem 2rem 2rem;
 
