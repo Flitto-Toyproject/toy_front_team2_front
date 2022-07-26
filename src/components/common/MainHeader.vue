@@ -23,7 +23,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background: var(--color-white);
-  margin: 0.813rem 1.875rem 0.813rem 1.688rem;
+  margin: 0rem 1.875rem 0.813rem 1.688rem;
 
   &__logo {
     width: 40px;
