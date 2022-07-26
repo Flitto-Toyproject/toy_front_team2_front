@@ -73,8 +73,10 @@ li {
       &-icon {
         width: 20px;
         height: 20px;
-        background: url('@/assets/svg/ic_calendar-white.svg');
-        background-size: cover;
+        -webkit-mask-image: url('@/assets/svg/ic_calendar-black.svg');
+        mask-image: url('@/assets/svg/ic_calendar-black.svg');
+        mask-repeat: no-repeat;
+        background-color: var(--color-white);
         margin-right: 0.6rem;
       }
 
@@ -95,8 +97,10 @@ li {
       &-icon {
         width: 20px;
         height: 20px;
-        background: url('@/assets/svg/ic_friend_find-black.svg');
-        background-size: cover;
+        -webkit-mask-image: url('@/assets/svg/ic_friend_find-black.svg');
+        mask-image: url('@/assets/svg/ic_friend_find-black.svg');
+        mask-repeat: no-repeat;
+        background-color: var(--color-black);
         margin-right: 0.6rem;
       }
 
