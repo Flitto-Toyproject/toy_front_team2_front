@@ -51,9 +51,9 @@ li {
   display: flex;
   position: fixed;
   flex-direction: column;
-  width: 260px;
+  width: 15%;
   height: 80%;
-  padding: 0rem 2rem 2rem 2rem;
+  padding: 1rem 2rem 2rem 2rem;
 
   &__menu {
     height: 7rem;
