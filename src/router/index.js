@@ -3,7 +3,6 @@ import LogIn from '@/views/LoginView.vue';
 import MainView from '@/views/MainView.vue';
 import MainAlaram from '@/components/alarm/MainAlaram.vue';
 import MainCalendar from '@/components/calendar/MainCalendar.vue';
-import MainFotter from '@/components/common/MainFotter.vue';
 import MainHeader from '@/components/common/MainHeader.vue';
 import MainSidebar from '@/components/common/MainSidebar.vue';
 import MainFriend from '@/components/friend/MainFriend.vue';
@@ -30,11 +29,6 @@ const routes = [
     path: '/test2',
     name: 'test',
     component: MainCalendar,
-  },
-  {
-    path: '/test3',
-    name: 'test3',
-    component: MainFotter,
   },
   {
     path: '/test4',

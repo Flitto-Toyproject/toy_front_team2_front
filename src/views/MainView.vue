@@ -1,17 +1,16 @@
 <template lang="">
-  <div>
+  <div class="body">
     <MainHeader />
     <MainSidebar />
-    <MainFotter />
+    <MainContent />
   </div>
 </template>
 <script>
 import MainHeader from '@/components/common/MainHeader.vue';
 import MainSidebar from '@/components/common/MainSidebar.vue';
-import MainFotter from '@/components/common/MainFotter.vue';
+import MainContent from '@/components/common/MainContent.vue';
 export default {
   name: 'MainView',
-  components: { MainHeader, MainSidebar, MainFotter },
+  components: { MainHeader, MainSidebar, MainContent },
 };
 </script>
-<style lang=""></style>
