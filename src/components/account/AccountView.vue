@@ -17,7 +17,12 @@
         />
       </label>
       <label class="account__input-pwlabel">
-        <input v-model="pw" class="account__input-pw" placeholder="PASSWORD" />
+        <input
+          v-model="pw"
+          type="password"
+          class="account__input-pw"
+          placeholder="PASSWORD"
+        />
       </label>
       <label v-if="toggle === false" class="account__input-namelabel">
         <input v-model="name" class="account__input-name" placeholder="NAME" />
@@ -65,6 +70,7 @@ export default {
   methods: {
     toggleChange() {
       this.$emit('account-toggle', !this.toggle);
+      (this.id = ''), (this.pw = ''), (this.name = '');
     },
   },
 };
@@ -244,6 +250,7 @@ export default {
       margin: 0 1rem 0 1rem;
       font-weight: bold;
       color: var(--color-blue);
+      cursor: pointer;
     }
   }
 }
