@@ -21,7 +21,7 @@ const routes = [
   },
   {
     // 추후 수정필요
-    path: '/',
+    path: '/main',
     name: 'Main',
     component: MainView,
   },
