@@ -45,7 +45,8 @@
     </article>
     <hr />
     <p class="account__notice" v-if="toggle === true">
-      혹시 계정이 없으신가요 ?? <span @click="toggleChange">Sign in</span>
+      혹시 계정이 없으신가요 ??
+      <span @click="toggleChange">Sign in</span>
     </p>
     <p class="account__notice" v-if="toggle === false">
       소셜 회원 가입은 원하시는 아이콘을 클릭하세요!
