@@ -39,9 +39,9 @@ export default {
         { username: '김도경', img_url: require('@/assets/img_flitto.png') },
         { username: '윤성철', img_url: require('@/assets/img_flitto.png') },
       ],
-    };
+    }
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 li {

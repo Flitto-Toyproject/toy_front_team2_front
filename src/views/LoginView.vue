@@ -24,22 +24,22 @@
 </template>
 
 <script>
-import AccountView from '../components/account/AccountView.vue';
+import AccountView from '../components/account/AccountView.vue'
 
 export default {
   components: { AccountView },
   data() {
     return {
       toggle: true,
-    };
+    }
   },
   methods: {
     accountToggle() {
-      this.toggle = !this.toggle;
-      console.log(this.toggle);
+      this.toggle = !this.toggle
+      console.log(this.toggle)
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -23,7 +23,7 @@ module.exports = {
       'error',
       {
         singleQuote: true, // 따옴표
-        semi: true, // 세미콜론
+        semi: false, // 세미콜론
         trailingComma: 'all', // 후행 쉼표 추가 구문
         printWidth: 80, // 줄바꿈 길이 설정
         arrowParens: 'avoid', // 화살표 함수 괄호 사용 방식
@@ -34,4 +34,4 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
-};
+}
