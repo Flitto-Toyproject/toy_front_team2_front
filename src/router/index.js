@@ -1,17 +1,22 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import LogIn from '@/views/LoginView.vue';
-import MainView from '@/views/MainView.vue';
-import MainAlaram from '@/components/alarm/MainAlaram.vue';
-import MainCalendar from '@/components/calendar/MainCalendar.vue';
-import MainHeader from '@/components/common/MainHeader.vue';
-import MainSidebar from '@/components/common/MainSidebar.vue';
-import MainFriend from '@/components/friend/MainFriend.vue';
-import MainProfile from '@/components/profile/MainProfile.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import LogIn from '@/views/LoginView.vue'
+import MainView from '@/views/MainView.vue'
+import MainAlaram from '@/components/alarm/MainAlaram.vue'
+import MainCalendar from '@/components/calendar/MainCalendar.vue'
+import MainHeader from '@/components/common/MainHeader.vue'
+import MainSidebar from '@/components/common/MainSidebar.vue'
+import MainFriend from '@/components/friend/MainFriend.vue'
+import MainProfile from '@/components/profile/MainProfile.vue'
 
 const routes = [
   {
     path: '/login',
     name: 'Login',
+    component: LogIn,
+  },
+  {
+    path: '/signin',
+    name: 'singin',
     component: LogIn,
   },
   {
@@ -60,11 +65,11 @@ const routes = [
   //   component: () =>
   //     import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
   // },
-];
+]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-});
+})
 
-export default router;
+export default router

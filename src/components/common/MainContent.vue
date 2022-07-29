@@ -2,7 +2,7 @@
   <section class="content"></section>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 .content {

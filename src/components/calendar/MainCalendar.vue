@@ -2,6 +2,6 @@
   <div>MainCalendar PAge</div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang=""></style>
