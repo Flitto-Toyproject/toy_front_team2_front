@@ -32,6 +32,7 @@
 export default {
   data() {
     return {
+      // 임시 데이터. 수정 필요함
       friends: [
         { username: '이필웅', img_url: require('@/assets/img_flitto.png') },
         { username: '김소현', img_url: require('@/assets/img_flitto.png') },
@@ -44,19 +45,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+// 사이드바 클릭 시 svg 색 변경 및 조건부 렌더링 작업 필요함
+
 li {
   list-style: none;
 }
 .sidebar {
   display: flex;
-  position: fixed;
   flex-direction: column;
-  width: 15%;
+  width: 300px;
   height: 80%;
   padding: 1rem 2rem 2rem 2rem;
 
   &__menu {
     height: 7rem;
+    min-width: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

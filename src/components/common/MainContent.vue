@@ -6,9 +6,8 @@ export default {}
 </script>
 <style lang="scss" scoped>
 .content {
-  position: fixed;
-  margin-left: 20%;
-  margin-top: 0.3rem;
+  position: relative;
+  margin-top: 0.5rem;
   min-height: calc(100vh - 115px);
   width: 78.5%;
   background: var(--color-white);
