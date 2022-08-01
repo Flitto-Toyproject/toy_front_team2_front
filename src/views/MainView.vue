@@ -1,8 +1,10 @@
 <template lang="">
   <div class="body">
-    <MainHeader />
-    <MainSidebar />
-    <MainContent />
+    <MainHeader class="body__header" />
+    <div class="body__main">
+      <MainSidebar class="body__sidebar" />
+      <MainContent class="body__content" />
+    </div>
   </div>
 </template>
 <script>
@@ -14,3 +16,18 @@ export default {
   components: { MainHeader, MainSidebar, MainContent },
 }
 </script>
+
+<style lang="scss" scoped>
+.body {
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    display: flex;
+  }
+
+  &__header {
+    height: 75px;
+  }
+}
+</style>

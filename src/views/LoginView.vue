@@ -74,8 +74,9 @@ export default {
   &__logo {
     display: flex;
     flex-direction: column;
+    width: 31%;
+    min-width: 300px;
     justify-content: space-between;
-    min-width: 31%;
     background: url('@/assets/img_login.png') no-repeat;
     background-size: cover;
     color: var(--color-white);
