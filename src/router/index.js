@@ -24,6 +24,11 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: MainView,
+    children: [
+      { path: 'profile', component: MainProfile },
+      { path: 'friend', component: MainFriend },
+      { path: 'calendar', component: MainCalendar },
+    ],
   },
   {
     path: '/test1',
@@ -49,11 +54,6 @@ const routes = [
     path: '/test6',
     name: 'test6',
     component: MainFriend,
-  },
-  {
-    path: '/test7',
-    name: 'test7',
-    component: MainProfile,
   },
 
   // {
