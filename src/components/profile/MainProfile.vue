@@ -7,6 +7,7 @@
       <div class="profile__header-container">
         <!-- 프로필 이미지 -->
         <div class="profile-image" />
+        <!-- 프로필 파트 -->
         <div class="profile-container">
           <p class="profile-container__name">
             <span class="profile-container__name-color">{{ name }}</span> 님
@@ -16,16 +17,17 @@
           <p class="profile-container__email">{{ email }}</p>
           <p class="profile-container__pwchange">비밀번호 변경</p>
         </div>
-        <div class="profile-schedule">
+        <!-- 일정 공개 설정 -->
+        <div class="profile-toggle">
+          <p class="profile-toggle__title">일정 공개 설정</p>
           <!-- 토글 버튼 부분 -->
-          <p class="profile-schedule__title">일정 공개 설정</p>
-          <label class="profile-schedule__toggle">
+          <label class="profile-toggle__toggle">
             <input
-              class="profile-schedule__toggle-input"
+              class="profile-toggle__toggle-input"
               type="checkbox"
               checked
             />
-            <span class="profile-schedule__toggle-slider"></span>
+            <span class="profile-toggle__toggle-slider"></span>
           </label>
         </div>
       </div>
@@ -38,17 +40,17 @@
       </div>
       <!-- 스케쥴 카드 파트 -->
       <ul class="profile__body-schedule">
-        <li v-for="(schedule, i) in schedules" :key="i" class="schedule">
-          <div class="schedule-container">
-            <div class="schedule-image">
+        <li class="schedule-card" v-for="(schedule, i) in schedules" :key="i">
+          <div class="schedule-card-container">
+            <div class="schedule-card-image">
               <i />
             </div>
-            <div class="schedule__content">
-              <p class="schedule__content-title">
+            <div class="schedule-card__content">
+              <p class="schedule-card__content-title">
                 [{{ schedule.council }}] {{ schedule.title }}
               </p>
-              <p class="schedule__content-time">{{ schedule.time }}</p>
-              <p class="schedule__content-participant">
+              <p class="schedule-card__content-time">{{ schedule.time }}</p>
+              <p class="schedule-card__content-participant">
                 {{ getParticipant(schedule.participant) }}
               </p>
             </div>
@@ -79,6 +81,7 @@ export default {
           participant: ['@이필웅', '@윤성철', '@김소현', '@송승민'],
         },
       ],
+      visible: false,
     }
   },
   methods: {
@@ -119,9 +122,11 @@ export default {
   height: calc(100vh - 115px);
   background: none;
 
+  // 헤더 부분
   &__header {
     background: none;
 
+    // 타이틀
     &-title {
       background: none;
       margin: 1rem;
@@ -130,11 +135,13 @@ export default {
       font-size: var(--font-size-h4);
     }
 
+    // 전체 컨테이너
     &-container {
       margin-top: 3rem;
       display: flex;
       background: none;
 
+      // 프로필 이미지
       .profile-image {
         width: 120px;
         height: 120px;
@@ -143,7 +150,7 @@ export default {
         background: url('@/assets/img_flitto.png');
         background-size: cover;
       }
-
+      // 프로필 파트
       .profile-container {
         background: none;
         margin-left: 30px;
@@ -159,6 +166,8 @@ export default {
             color: var(--color-blue);
             margin-right: 0.5rem;
           }
+
+          // 수정 아이콘
           &-icon {
             width: 25px;
             height: 25px;
@@ -185,7 +194,8 @@ export default {
         }
       }
 
-      .profile-schedule {
+      // 일정 공개 부분
+      .profile-toggle {
         display: flex;
         flex-direction: column;
         margin-left: auto;
@@ -198,10 +208,13 @@ export default {
           color: var(--color-gray);
           font-weight: bold;
         }
+
+        // 토글 버튼 부분
       }
     }
   }
 
+  // 스케쥴 안내 부분
   &__body {
     margin: 2rem auto;
     width: 90%;
@@ -229,7 +242,8 @@ export default {
       }
     }
 
-    .schedule {
+    // 스케쥴 카드 파트
+    .schedule-card {
       display: flex;
       flex-direction: column;
       padding: 1.5rem;
@@ -283,7 +297,7 @@ export default {
 }
 
 // 안에 종속시키고 상태값에 따라 그려주는거 다르게끔 종속이 안먹음
-.profile-schedule__toggle {
+.profile-toggle__toggle {
   margin-top: 1rem;
   position: relative;
   display: inline-block;
