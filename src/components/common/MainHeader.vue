@@ -4,7 +4,10 @@
       <div class="header__logo"></div>
       <div class="header__alramAndProfile">
         <div class="header__alarm"></div>
-        <div class="header__profile"></div>
+        <div
+          class="header__profile"
+          @click="$router.push('/main/profile')"
+        ></div>
       </div>
     </div>
   </header>

@@ -1,11 +1,14 @@
 <template>
   <section class="sidebar">
     <article class="sidebar__menu">
-      <div class="sidebar__menu--calendar">
+      <div
+        class="sidebar__menu--calendar"
+        @click="$router.push('/main/calendar')"
+      >
         <i class="sidebar__menu--calendar-icon" />
         <span class="sidebar__menu--calendar-text">일정</span>
       </div>
-      <div class="sidebar__menu--find">
+      <div class="sidebar__menu--find" @click="$router.push('/main/friend')">
         <i class="sidebar__menu--find-icon" />
         <span class="sidebar__menu--find-text">친구 찾기</span>
       </div>
