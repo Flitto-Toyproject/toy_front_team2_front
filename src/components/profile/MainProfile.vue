@@ -6,13 +6,35 @@
       <!-- 전체 컨테이너 -->
       <div class="profile__header-container">
         <!-- 프로필 이미지 -->
-        <div class="profile-image" />
+        <div class="profile-image-wrapper">
+          <div v-if="edit === false" class="profile-image-overlay" />
+          <div class="profile-image" />
+        </div>
+
         <!-- 프로필 파트 -->
         <div class="profile-container">
           <p class="profile-container__name">
             <span class="profile-container__name-color">{{ name }}</span> 님
             <!-- 수정 아이콘 -->
-            <i class="profile-container__name-icon" />
+            <i
+              v-if="edit"
+              class="profile-container__name-icon"
+              @click="this.edit = !this.edit"
+            />
+            <button
+              @click="this.edit = !this.edit"
+              v-if="edit === false"
+              class="profile-container__name-cancle"
+            >
+              취소
+            </button>
+            <button
+              @click="this.edit = !this.edit"
+              v-if="edit === false"
+              class="profile-container__name-confirm"
+            >
+              확인
+            </button>
           </p>
           <p class="profile-container__email">{{ email }}</p>
           <p class="profile-container__pwchange">비밀번호 변경</p>
@@ -40,7 +62,8 @@
         <hr />
       </div>
       <!-- 스케쥴 카드 파트 -->
-      <ul class="profile__body-schedule">
+      <ul v-if="schedules" class="schedule">
+        <!-- container 부분을 수정하기 종속관계가 존재하면 클래스명을 유사하게 -->
         <li class="schedule-card" v-for="(schedule, i) in schedules" :key="i">
           <div class="schedule-card-container">
             <div class="schedule-card-image">
@@ -58,6 +81,10 @@
           </div>
         </li>
       </ul>
+      <div v-if="schedules.length === 0" class="schedule-empty">
+        <i class="schedule-empty-image" />
+        <p class="schedule-empty-text">오늘 등록된 일정이 없습니다.</p>
+      </div>
     </article>
   </section>
 </template>
@@ -69,20 +96,21 @@ export default {
       email: 'sohyeon.kim@flitto.com',
       // 임시 스케쥴 데이터
       schedules: [
-        {
-          council: '독도',
-          title: '토이 프로젝트 미팅',
-          time: '오후 12시 ~ 오후 1시',
-          participant: ['@이필웅', '@윤성철', '@김소현'],
-        },
-        {
-          council: '바이칼',
-          title: '토이 프로젝트 미팅',
-          time: '오후 4시 ~ 오후 6시',
-          participant: ['@이필웅', '@윤성철', '@김소현', '@송승민'],
-        },
+        // {
+        //   council: '독도',
+        //   title: '토이 프로젝트 미팅',
+        //   time: '오후 12시 ~ 오후 1시',
+        //   participant: ['@이필웅', '@윤성철', '@김소현'],
+        // },
+        // {
+        //   council: '바이칼',
+        //   title: '토이 프로젝트 미팅',
+        //   time: '오후 4시 ~ 오후 6시',
+        //   participant: ['@이필웅', '@윤성철', '@김소현', '@송승민'],
+        // },
       ],
       visible: false,
+      edit: true,
     }
   },
   methods: {
@@ -146,16 +174,33 @@ export default {
       display: flex;
       background: none;
 
-      // 프로필 이미지
-      .profile-image {
-        width: 120px;
-        min-width: 120px;
-        height: 120px;
-        min-height: 120px;
-        margin-left: 5rem;
-        border-radius: 50%;
-        background: url('@/assets/img_flitto.png');
-        background-size: cover;
+      .profile-image-wrapper {
+        background: none;
+        position: relative;
+        .profile-image-overlay {
+          position: absolute;
+          margin-left: 5rem;
+          width: 120px;
+          min-width: 120px;
+          height: 120px;
+          min-height: 120px;
+          border-radius: 50%;
+          background: rgba(50, 50, 50, 0.7) url('@/assets/svg/ic_camera.svg')
+            no-repeat center center;
+          background-size: 40%;
+          cursor: pointer;
+        }
+        // 프로필 이미지
+        .profile-image {
+          width: 120px;
+          min-width: 120px;
+          height: 120px;
+          min-height: 120px;
+          margin-left: 5rem;
+          border-radius: 50%;
+          background: url('@/assets/img_flitto.png');
+          background-size: cover;
+        }
       }
       // 프로필 파트
       .profile-container {
@@ -181,6 +226,60 @@ export default {
             background: url('@/assets/svg/ic_edit.svg');
             cursor: pointer;
             margin-left: 0.7rem;
+          }
+
+          // 취소, 확인 버튼
+          &-cancle {
+            margin-left: 0.7rem;
+            background-color: var(--color-white);
+            color: var(--color-blue);
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid var(--color-blue);
+            width: 70px;
+            border-radius: 10px;
+            transition: 0.2s all;
+
+            &:hover {
+              margin-left: 0.7rem;
+              background-color: var(--color-blue);
+              color: var(--color-white);
+              font-weight: bold;
+              cursor: pointer;
+              border: 1px solid var(--color-blue);
+              width: 70px;
+              border-radius: 10px;
+            }
+            &:active {
+              transform: scale(0.9);
+            }
+          }
+
+          &-confirm {
+            margin-left: 0.7rem;
+            background-color: var(--color-blue);
+            color: var(--color-white);
+            font-weight: bold;
+            cursor: pointer;
+            border: 1px solid var(--color-blue);
+            width: 70px;
+            border-radius: 10px;
+            transition: 0.2s all;
+
+            &:hover {
+              margin-left: 0.7rem;
+              background-color: var(--color-white);
+              color: var(--color-blue);
+              font-weight: bold;
+              cursor: pointer;
+              border: 1px solid var(--color-blue);
+              width: 70px;
+              border-radius: 10px;
+            }
+
+            &:active {
+              transform: scale(0.9);
+            }
           }
         }
 
@@ -349,6 +448,29 @@ export default {
           background: none;
           margin-left: 0.5rem;
         }
+      }
+    }
+
+    .schedule-empty {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 400px;
+      justify-content: center;
+      align-items: center;
+      background: none;
+
+      &-image {
+        display: block;
+        width: 200px;
+        height: 200px;
+        background: url('@/assets/img_alram.png');
+        background-size: cover;
+      }
+
+      &-text {
+        text-align: center;
+        background: none;
       }
     }
   }
