@@ -19,7 +19,7 @@
   --color-carrot: #d65744;
   --color-light-carrot: #f3cdc8;
   --color-blue: #0066ec;
-  --color-light-blue: #6babec;
+  --color-light-blue: #c3d8ec;
   --color-dark-gray: #585757;
   --color-gray: #969696;
   --color-light-gray: #f2f2f2;
