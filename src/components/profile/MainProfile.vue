@@ -21,13 +21,14 @@
         <div class="profile-toggle">
           <p class="profile-toggle__title">일정 공개 설정</p>
           <!-- 토글 버튼 부분 -->
-          <label class="profile-toggle__toggle">
+          <label class="profile-toggle__label">
             <input
-              class="profile-toggle__toggle-input"
+              class="profile-toggle__label-input"
               type="checkbox"
-              checked
+              v-model="visible"
+              @click="toggleVisible"
             />
-            <span class="profile-toggle__toggle-slider"></span>
+            <span class="profile-toggle__label-slider"></span>
           </label>
         </div>
       </div>
@@ -113,6 +114,10 @@ export default {
       }
       return participant
     },
+    toggleVisible() {
+      this.visible = !this.visible
+      console.log(this.visible)
+    },
   },
 }
 </script>
@@ -144,7 +149,9 @@ export default {
       // 프로필 이미지
       .profile-image {
         width: 120px;
+        min-width: 120px;
         height: 120px;
+        min-height: 120px;
         margin-left: 5rem;
         border-radius: 50%;
         background: url('@/assets/img_flitto.png');
@@ -194,7 +201,7 @@ export default {
         }
       }
 
-      // 일정 공개 부분
+      // 일정 공개 설정
       .profile-toggle {
         display: flex;
         flex-direction: column;
@@ -210,6 +217,57 @@ export default {
         }
 
         // 토글 버튼 부분
+        &__label {
+          margin-top: 1rem;
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 28px;
+          background: var(--color-white);
+
+          &-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+
+          &-input:checked + .profile-toggle__label-slider {
+            background-color: var(--color-blue);
+          }
+
+          &-input:checked + .profile-toggle__label-slider:before {
+            -webkit-transform: translateX(32px);
+            transform: translateX(32px);
+          }
+
+          // 슬라이더 바 부분
+          &-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-gray);
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            border-radius: 34px;
+
+            // 선택하는 원형
+            &::before {
+              position: absolute;
+              content: '';
+              height: 22px;
+              width: 22px;
+              left: 3px;
+              bottom: 3px;
+              background-color: var(--color-white);
+              -webkit-transition: 0.4s;
+              transition: 0.4s;
+              border-radius: 50%;
+            }
+          }
+        }
       }
     }
   }
@@ -292,60 +350,6 @@ export default {
           margin-left: 0.5rem;
         }
       }
-    }
-  }
-}
-
-// 안에 종속시키고 상태값에 따라 그려주는거 다르게끔 종속이 안먹음
-.profile-toggle__toggle {
-  margin-top: 1rem;
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 28px;
-  background: var(--color-white);
-
-  &-input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  // 선택된 부분에 따른 애니메이션 -> 상태값에 따른 형태로 토글되는 방식으로 바꾸기
-  &-input:checked + &-slider {
-    background-color: var(--color-blue);
-  }
-
-  &-input:checked + &-slider:before {
-    -webkit-transform: translateX(32px);
-    transform: translateX(32px);
-  }
-
-  // 슬라이더 바 부분
-  &-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--color-gray);
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 34px;
-
-    // 선택하는 원형
-    &::before {
-      position: absolute;
-      content: '';
-      height: 22px;
-      width: 22px;
-      left: 3px;
-      bottom: 3px;
-      background-color: var(--color-white);
-      -webkit-transition: 0.4s;
-      transition: 0.4s;
-      border-radius: 50%;
     }
   }
 }
