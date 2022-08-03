@@ -7,14 +7,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+  components: {},
+  data() {
+    return {}
+  },
+}
 </script>
 
 <style lang="scss" scoped>
 .content {
   display: flex;
   flex-direction: column;
-  position: relative;
   margin-top: 0.5rem;
   min-height: calc(100vh - 115px);
   width: 78.5%;
