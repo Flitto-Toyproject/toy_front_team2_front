@@ -55,6 +55,11 @@ const routes = [
     name: 'test6',
     component: MainFriend,
   },
+  {
+    path: '/modal',
+    name: 'modal',
+    component: () => import('@/components/modal/ProfileModal.vue'),
+  },
 
   // {
   //   path: '/about',
