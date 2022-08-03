@@ -36,7 +36,13 @@
             </button>
           </p>
           <p class="profile-container__email">{{ email }}</p>
-          <p v-if="isMine" class="profile-container__pwchange">비밀번호 변경</p>
+          <p
+            v-if="isMine"
+            class="profile-container__pwchange"
+            @click="modal = !modal"
+          >
+            비밀번호 변경
+          </p>
           <button v-else class="profile-container__unfollow">Unfollow</button>
         </div>
         <!-- 일정 공개 설정 -->
@@ -95,10 +101,14 @@
         </p>
       </div>
     </article>
+    <ProfileModal v-if="modal" @close="closeModal" />
   </section>
 </template>
+
 <script>
+import ProfileModal from '../modal/ProfileModal.vue'
 export default {
+  components: { ProfileModal },
   data() {
     return {
       name: '김소현',
@@ -122,9 +132,10 @@ export default {
       // edit -> 수정하기 관련 변수
       edit: true,
       // isMine -> 내정보인지 체크용 변수
-      isMine: false,
+      isMine: true,
       // isPublic -> 내정보 공개여부 체크용 변수
-      isPublic: true,
+      isPublic: false,
+      modal: false,
     }
   },
   methods: {
@@ -159,6 +170,12 @@ export default {
     toggleInput() {
       this.toggle = !this.toggle
       console.log(this.toggle)
+    },
+    openModal() {
+      this.modal = true
+    },
+    closeModal() {
+      this.modal = false
     },
   },
 }
@@ -359,8 +376,8 @@ export default {
 
         // 토글 버튼 부분
         &__label {
-          margin-top: 1rem;
-          position: relative;
+          margin-top: 2rem;
+          position: fixed;
           display: inline-block;
           width: 60px;
           height: 28px;

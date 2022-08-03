@@ -39,13 +39,14 @@ div {
 
 .modal-background {
   display: flex;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
-  padding: 20px;
   align-items: center;
   z-index: 99;
+  top: 0;
+  left: 0;
 }
 
 .modal-frame {

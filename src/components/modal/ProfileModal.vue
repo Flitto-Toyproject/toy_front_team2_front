@@ -1,12 +1,9 @@
 <template>
   <div>
-    <button @click="openModal">열기</button>
-    <button @click="closeModal">닫기</button>
-
-    <ModalFrame @close="closeModal" v-if="modal">
+    <ModalFrame @close="$emit('close')">
       <div class="modal__header">
         <p class="modal__header-title">비밀번호 변경</p>
-        <i class="modal__header-icon" @click="closeModal" />
+        <i class="modal__header-icon" @click="$emit('close')" />
       </div>
       <hr />
       <div class="modal__body">
@@ -25,7 +22,7 @@
       </div>
       <hr />
       <div class="modal__footer">
-        <button class="modal__footer-button" @click="closeModal">
+        <button class="modal__footer-button" @click="$emit('close')">
           변경하기
         </button>
       </div>
@@ -45,14 +42,7 @@ export default {
     }
   },
 
-  methods: {
-    openModal() {
-      this.modal = true
-    },
-    closeModal() {
-      this.modal = false
-    },
-  },
+  methods: {},
 }
 </script>
 
@@ -71,9 +61,6 @@ export default {
   }
 }
 
-* {
-  background-color: var(--color-white);
-}
 .modal__header {
   display: flex;
   width: inherit;
