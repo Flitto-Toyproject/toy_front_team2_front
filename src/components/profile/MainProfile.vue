@@ -10,14 +10,13 @@
           <div v-if="edit === false" class="profile-image-overlay" />
           <div class="profile-image" />
         </div>
-
         <!-- 프로필 파트 -->
         <div class="profile-container">
           <p class="profile-container__name">
             <span class="profile-container__name-color">{{ name }}</span> 님
             <!-- 수정 아이콘 -->
             <i
-              v-if="edit"
+              v-if="edit && isMine"
               class="profile-container__name-icon"
               @click="this.edit = !this.edit"
             />
@@ -37,18 +36,19 @@
             </button>
           </p>
           <p class="profile-container__email">{{ email }}</p>
-          <p class="profile-container__pwchange">비밀번호 변경</p>
+          <p v-if="isMine" class="profile-container__pwchange">비밀번호 변경</p>
+          <button v-else class="profile-container__unfollow">Unfollow</button>
         </div>
         <!-- 일정 공개 설정 -->
-        <div class="profile-toggle">
+        <div v-if="isMine" class="profile-toggle">
           <p class="profile-toggle__title">일정 공개 설정</p>
           <!-- 토글 버튼 부분 -->
           <label class="profile-toggle__label">
             <input
               class="profile-toggle__label-input"
               type="checkbox"
-              v-model="visible"
-              @click="toggleVisible"
+              v-model="toggle"
+              @click="toggleInput"
             />
             <span class="profile-toggle__label-slider"></span>
           </label>
@@ -62,7 +62,7 @@
         <hr />
       </div>
       <!-- 스케쥴 카드 파트 -->
-      <ul v-if="schedules" class="schedule">
+      <ul v-if="schedules && isPublic === true" class="schedule">
         <!-- container 부분을 수정하기 종속관계가 존재하면 클래스명을 유사하게 -->
         <li class="schedule-card" v-for="(schedule, i) in schedules" :key="i">
           <div class="schedule-card-container">
@@ -85,6 +85,15 @@
         <i class="schedule-empty-image" />
         <p class="schedule-empty-text">오늘 등록된 일정이 없습니다.</p>
       </div>
+      <div
+        v-if="isMine === false && isPublic === false"
+        class="schedule-public"
+      >
+        <i class="schedule-public-image" />
+        <p class="schedule-public-text">
+          친구가 일정 공개를 비활성화 해놓은 상태입니다.
+        </p>
+      </div>
     </article>
   </section>
 </template>
@@ -96,21 +105,26 @@ export default {
       email: 'sohyeon.kim@flitto.com',
       // 임시 스케쥴 데이터
       schedules: [
-        // {
-        //   council: '독도',
-        //   title: '토이 프로젝트 미팅',
-        //   time: '오후 12시 ~ 오후 1시',
-        //   participant: ['@이필웅', '@윤성철', '@김소현'],
-        // },
-        // {
-        //   council: '바이칼',
-        //   title: '토이 프로젝트 미팅',
-        //   time: '오후 4시 ~ 오후 6시',
-        //   participant: ['@이필웅', '@윤성철', '@김소현', '@송승민'],
-        // },
+        {
+          council: '독도',
+          title: '토이 프로젝트 미팅',
+          time: '오후 12시 ~ 오후 1시',
+          participant: ['@이필웅', '@윤성철', '@김소현'],
+        },
+        {
+          council: '바이칼',
+          title: '토이 프로젝트 미팅',
+          time: '오후 4시 ~ 오후 6시',
+          participant: ['@이필웅', '@윤성철', '@김소현', '@송승민'],
+        },
       ],
-      visible: false,
+      toggle: false,
+      // edit -> 수정하기 관련 변수
       edit: true,
+      // isMine -> 내정보인지 체크용 변수
+      isMine: false,
+      // isPublic -> 내정보 공개여부 체크용 변수
+      isPublic: true,
     }
   },
   methods: {
@@ -142,9 +156,9 @@ export default {
       }
       return participant
     },
-    toggleVisible() {
-      this.visible = !this.visible
-      console.log(this.visible)
+    toggleInput() {
+      this.toggle = !this.toggle
+      console.log(this.toggle)
     },
   },
 }
@@ -176,7 +190,6 @@ export default {
 
       .profile-image-wrapper {
         background: none;
-        position: relative;
         .profile-image-overlay {
           position: absolute;
           margin-left: 5rem;
@@ -189,6 +202,12 @@ export default {
             no-repeat center center;
           background-size: 40%;
           cursor: pointer;
+
+          &:hover {
+            background: rgba(50, 50, 50, 0.8) url('@/assets/svg/ic_camera.svg')
+              no-repeat center center;
+            background-size: 45%;
+          }
         }
         // 프로필 이미지
         .profile-image {
@@ -205,7 +224,7 @@ export default {
       // 프로필 파트
       .profile-container {
         background: none;
-        margin-left: 30px;
+        margin-left: 25px;
 
         &__name {
           display: flex;
@@ -298,6 +317,29 @@ export default {
           background: none;
           text-decoration: underline;
         }
+
+        &__unfollow {
+          margin-top: 0.5rem;
+          width: 120px;
+          height: 35px;
+          border-radius: 10px;
+          background-color: var(--color-white);
+          border: 2px solid var(--color-blue);
+          color: var(--color-blue);
+          font-weight: bold;
+          font-size: var(--font-size-h5);
+          transition: 0.3s all;
+          cursor: pointer;
+
+          &:hover {
+            background-color: var(--color-blue);
+            color: var(--color-white);
+          }
+
+          &:active {
+            transform: scale(0.9);
+          }
+        }
       }
 
       // 일정 공개 설정
@@ -322,7 +364,7 @@ export default {
           display: inline-block;
           width: 60px;
           height: 28px;
-          background: var(--color-white);
+          background: none;
 
           &-input {
             opacity: 0;
@@ -471,6 +513,31 @@ export default {
       &-text {
         text-align: center;
         background: none;
+        color: var(--color-gray);
+      }
+    }
+
+    .schedule-public {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 400px;
+      justify-content: center;
+      align-items: center;
+      background: none;
+
+      &-image {
+        display: block;
+        width: 250px;
+        height: 200px;
+        background: url('@/assets/img_private.png');
+        background-size: cover;
+      }
+
+      &-text {
+        text-align: center;
+        background: none;
+        color: var(--color-gray);
       }
     }
   }
