@@ -134,7 +134,7 @@ export default {
       // isMine -> 내정보인지 체크용 변수
       isMine: true,
       // isPublic -> 내정보 공개여부 체크용 변수
-      isPublic: false,
+      isPublic: true,
       modal: false,
     }
   },
@@ -153,13 +153,14 @@ export default {
       return (
         date.getFullYear() +
         '년 ' +
-        date.getMonth() +
+        String(parseInt(date.getMonth()) + 1) +
         '월 ' +
         date.getDate() +
         '일 ' +
         week[date.getDay()]
       )
     },
+    // reduce나 다른 메소드
     getParticipant(iterable) {
       let participant = ''
       for (let i of iterable) {
