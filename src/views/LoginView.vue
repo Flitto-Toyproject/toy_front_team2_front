@@ -1,7 +1,7 @@
 <template>
   <section class="login">
     <article class="login__logo">
-      <div class="login__logo-flitto">
+      <div class="login__logo-flitto" @click="goSite('flitto')">
         <i class="login__logo-flitto-icon" />
         <span class="login__logo-flitto-text">Flitto</span>
       </div>
@@ -10,14 +10,17 @@
         <span class="login__logo-title-text">CALENDAR</span>
       </div>
       <div class="login__logo-social">
-        <i class="login__logo-social-facebook" />
-        <i class="login__logo-social-instargram" />
-        <i class="login__logo-social-twitter" />
+        <i class="login__logo-social-facebook" @click="goSite('facebook')" />
+        <i
+          class="login__logo-social-instargram"
+          @click="goSite('instargram')"
+        />
+        <i class="login__logo-social-twitter" @click="goSite('twitter')" />
       </div>
     </article>
     <article class="login__content">
       <div class="login__content-box">
-        <AccountView :toggle="toggle" @account-toggle="accountToggle" />
+        <AccountView />
       </div>
     </article>
   </section>
@@ -29,14 +32,17 @@ import AccountView from '../components/account/AccountView.vue'
 export default {
   components: { AccountView },
   data() {
-    return {
-      toggle: true,
-    }
+    return {}
   },
   methods: {
-    accountToggle() {
-      this.toggle = !this.toggle
-      console.log(this.toggle)
+    goSite(_site) {
+      const siteObj = {
+        flitto: 'https://www.flitto.com/language/translation/text',
+        facebook: 'https://www.facebook.com/flitto',
+        instargram: 'https://www.instagram.com/flitto_official',
+        twitter: 'https://twitter.com/Flitto_Inc',
+      }
+      window.open(siteObj[_site], '')
     },
   },
 }

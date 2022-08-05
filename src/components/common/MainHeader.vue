@@ -1,13 +1,10 @@
 <template>
   <header>
     <div class="header">
-      <div class="header__logo"></div>
+      <div class="header__logo" @click="$router.push('/main/calendar')"></div>
       <div class="header__alramAndProfile">
-        <div class="header__alarm"></div>
-        <div
-          class="header__profile"
-          @click="$router.push('/main/profile')"
-        ></div>
+        <div class="header__alarm" @click="$router.push('/main/alarm')" />
+        <div class="header__profile" @click="$router.push('/main/profile')" />
       </div>
     </div>
   </header>
@@ -16,6 +13,15 @@
 export default {}
 </script>
 <style lang="scss" scoped>
+@keyframes vibration {
+  from {
+    transform: rotate(3deg);
+  }
+  to {
+    transform: rotate(-3deg);
+  }
+}
+
 header {
   width: 100%;
   background: var(--color-white);
@@ -34,6 +40,12 @@ header {
     background: url('@/assets/img_flitto.png') no-repeat;
     background-size: cover;
     border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s all;
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
   &__alramAndProfile {
     display: flex;
@@ -45,6 +57,12 @@ header {
     margin-right: 1.375rem;
     background: url('@/assets/svg/ic_alarm.svg') no-repeat;
     background-size: cover;
+    transition: 0.2s all;
+    cursor: pointer;
+
+    &:hover {
+      animation: vibration 0.2s infinite;
+    }
   }
   &__profile {
     width: 30px;
@@ -52,6 +70,12 @@ header {
     background: url('@/assets/img_flitto.png') no-repeat;
     background-size: cover;
     border-radius: 50%;
+    transition: 0.2s all;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.9);
+    }
   }
 }
 </style>

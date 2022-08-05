@@ -33,14 +33,14 @@
       <i class="account__footer-google" />
       <i class="account__footer-kakao" />
       <button
-        @click="$router.push('main')"
+        @click="$router.push('main/calendar')"
         v-if="toggle === true"
         class="account__footer-button"
       >
         <span>Log In</span>
       </button>
       <button
-        @click=";[toggleChange(), $router.push('login')]"
+        @click="$router.push('login')"
         v-if="toggle === false"
         class="account__footer-button"
       >
@@ -50,7 +50,7 @@
     <hr />
     <p class="account__notice" v-if="toggle === true">
       혹시 계정이 없으신가요 ??
-      <span @click=";[toggleChange(), $router.push('signin')]">Sign in</span>
+      <span @click="$router.push('signin')">Sign in</span>
     </p>
     <p class="account__notice" v-if="toggle === false">
       소셜 회원 가입은 원하시는 아이콘을 클릭하세요!
@@ -64,26 +64,30 @@ export default {
       id: '',
       pw: '',
       name: '',
+      toggle: true,
       url: this.$route.path,
     }
   },
   mounted() {
     if (this.url === '/signin') {
-      this.toggleChange()
+      this.toggle = false
     }
   },
-  props: {
-    toggle: {
-      type: Boolean,
-      default: true,
-    },
-  },
+  props: {},
   methods: {
-    toggleChange() {
-      this.$emit('account-toggle', !this.toggle)
-    },
     signIn() {
       alert('회원 가입 성공 시 사용할 함수 부분')
+    },
+  },
+  computed: {},
+  watch: {
+    $route(to) {
+      console.log(to.path)
+      if (to.path === '/signin') {
+        this.toggle = false
+      } else if (to.path === '/login') {
+        this.toggle = true
+      }
     },
   },
 }
