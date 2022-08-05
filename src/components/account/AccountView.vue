@@ -33,7 +33,7 @@
       <i class="account__footer-google" />
       <i class="account__footer-kakao" />
       <button
-        @click="$router.push('main')"
+        @click="$router.push('main/calendar')"
         v-if="toggle === true"
         class="account__footer-button"
       >
@@ -68,7 +68,11 @@ export default {
       url: this.$route.path,
     }
   },
-  mounted() {},
+  mounted() {
+    if (this.url === '/signin') {
+      this.toggle = false
+    }
+  },
   props: {},
   methods: {
     signIn() {
