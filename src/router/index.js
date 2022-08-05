@@ -28,6 +28,7 @@ const routes = [
       { path: 'profile', component: MainProfile },
       { path: 'friend', component: MainFriend },
       { path: 'calendar', component: MainCalendar },
+      { path: 'alarm', component: MainAlaram },
     ],
   },
   {
