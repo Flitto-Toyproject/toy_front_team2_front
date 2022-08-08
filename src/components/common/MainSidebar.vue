@@ -87,7 +87,6 @@ export default {
     }
   },
   mounted() {
-    console.log('url :', this.$route.path)
     if (this.url.slice(0, 14) !== '/main/calendar') {
       if (this.url.slice(0, 12) !== '/main/friend') {
         this.isOther = true

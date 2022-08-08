@@ -170,7 +170,6 @@ export default {
     },
     toggleInput() {
       this.toggle = !this.toggle
-      console.log(this.toggle)
     },
     openModal() {
       this.modal = true

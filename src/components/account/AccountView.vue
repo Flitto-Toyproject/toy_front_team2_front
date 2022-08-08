@@ -82,7 +82,6 @@ export default {
   computed: {},
   watch: {
     $route(to) {
-      console.log(to.path)
       if (to.path === '/signin') {
         this.toggle = false
       } else if (to.path === '/login') {
