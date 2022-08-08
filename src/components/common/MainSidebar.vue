@@ -3,21 +3,24 @@
     <article class="sidebar__menu">
       <div
         :class="{
-          'sidebar__menu-calendar': !isCalendar,
-          'sidebar__menu-calendar-clicked': isCalendar,
+          'sidebar__menu-calendar':
+            !isCalendar || (isCalendar && isOther === true),
+          'sidebar__menu-calendar-clicked': isCalendar && isOther === false,
         }"
         @click=";[$router.push('/main/calendar'), (isCalendar = true)]"
       >
         <i
+          class="sidebar__menu-calendar-icon"
           :class="{
-            'sidebar__menu-calendar-icon': !isCalendar,
-            'sidebar__menu-calendar-clicked-icon': isCalendar,
+            'sidebar__menu-calendar-clicked-icon':
+              isCalendar && isOther === false,
           }"
         />
         <span
+          class="sidebar__menu-calendar-text"
           :class="{
-            'sidebar__menu-calendar-text': !isCalendar,
-            'sidebar__menu-calendar-clicked-text': isCalendar,
+            'sidebar__menu-calendar-clicked-text':
+              isCalendar && isOther === false,
           }"
           >일정</span
         >
@@ -79,13 +82,19 @@ export default {
       ],
       toggle: false,
       isCalendar: true,
+      isOther: false,
       url: this.$route.path,
     }
   },
   mounted() {
     console.log('url :', this.$route.path)
     if (this.url.slice(0, 14) !== '/main/calendar') {
-      this.isCalendar = false
+      if (this.url.slice(0, 12) !== '/main/friend') {
+        this.isOther = true
+      } else {
+        this.isOther = false
+        this.isCalendar = false
+      }
     }
   },
   watch: {},
@@ -217,7 +226,7 @@ li {
         transition: 0.2s ease;
 
         &:hover {
-          background-color: rgba(70, 70, 70, 0.3);
+          background-color: rgba(70, 70, 70, 0.2);
           border-radius: 10px;
         }
 
@@ -245,7 +254,7 @@ li {
 
       &:hover {
         padding: 0.5rem;
-        background-color: var(--color-gray);
+        background-color: rgba(70, 70, 70, 0.2);
       }
 
       &-img {
@@ -257,9 +266,6 @@ li {
 
       &-name {
         background: none;
-        &:hover {
-          background: var(--color-gray);
-        }
       }
     }
   }
