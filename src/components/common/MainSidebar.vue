@@ -57,6 +57,7 @@
             :key="i"
             v-for="(friend, i) in friends"
             class="sidebar__friends-item"
+            @click="getFriendProfile(friend.id)"
           >
             <img class="sidebar__friends-item-img" :src="friend.img_url" />
             <span class="sidebar__friends-item-name">{{
@@ -74,11 +75,31 @@ export default {
     return {
       // 임시 데이터. 수정 필요함
       friends: [
-        { username: '이필웅', img_url: require('@/assets/img_flitto.png') },
-        { username: '김소현', img_url: require('@/assets/img_flitto.png') },
-        { username: '김효은', img_url: require('@/assets/img_flitto.png') },
-        { username: '김도경', img_url: require('@/assets/img_flitto.png') },
-        { username: '윤성철', img_url: require('@/assets/img_flitto.png') },
+        {
+          id: 0,
+          username: '이필웅',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 1,
+          username: '김소현',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 2,
+          username: '김효은',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 3,
+          username: '김도경',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 4,
+          username: '윤성철',
+          img_url: require('@/assets/img_flitto.png'),
+        },
       ],
       toggle: false,
       isCalendar: true,
@@ -95,6 +116,11 @@ export default {
         this.isCalendar = false
       }
     }
+  },
+  methods: {
+    getFriendProfile(id) {
+      this.$router.push(`/main/profile/${id}`)
+    },
   },
   watch: {},
 }
