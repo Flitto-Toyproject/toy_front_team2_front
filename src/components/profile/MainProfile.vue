@@ -68,25 +68,12 @@
         <hr />
       </div>
       <!-- 스케쥴 카드 파트 -->
-      <ul v-if="schedules && isPublic === true" class="schedule">
-        <!-- container 부분을 수정하기 종속관계가 존재하면 클래스명을 유사하게 -->
-        <li class="schedule-card" v-for="(schedule, i) in schedules" :key="i">
-          <div class="schedule-card-container">
-            <div class="schedule-card-image">
-              <i />
-            </div>
-            <div class="schedule-card__content">
-              <p class="schedule-card__content-title">
-                [{{ schedule.council }}] {{ schedule.title }}
-              </p>
-              <p class="schedule-card__content-time">{{ schedule.time }}</p>
-              <p class="schedule-card__content-participant">
-                {{ getParticipant(schedule.participant) }}
-              </p>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <ScheduleCard
+        v-if="schedules && isPublic === true"
+        :schedules="schedules"
+        :getParticipant="this.getParticipant"
+        @click="$router.push('/main/alarm')"
+      />
       <div v-if="schedules.length === 0" class="schedule-empty">
         <i class="schedule-empty-image" />
         <p class="schedule-empty-text">오늘 등록된 일정이 없습니다.</p>
@@ -107,8 +94,9 @@
 
 <script>
 import ProfileModal from '../modal/ProfileModal.vue'
+import ScheduleCard from '../common/ScheduleCard.vue'
 export default {
-  components: { ProfileModal },
+  components: { ProfileModal, ScheduleCard },
   data() {
     return {
       name: '김소현',
@@ -160,13 +148,11 @@ export default {
         week[date.getDay()]
       )
     },
-    // reduce나 다른 메소드
     getParticipant(iterable) {
-      let participant = ''
-      for (let i of iterable) {
-        participant += i + ' '
-      }
-      return participant
+      const allParticipant = iterable.reduce((prev, cur) => {
+        return prev + ' ' + cur
+      })
+      return allParticipant
     },
     toggleInput() {
       this.toggle = !this.toggle
@@ -399,7 +385,6 @@ export default {
             transform: translateX(32px);
           }
 
-          // 슬라이더 바 부분
           &-slider {
             position: absolute;
             cursor: pointer;
@@ -412,7 +397,6 @@ export default {
             transition: 0.4s;
             border-radius: 34px;
 
-            // 선택하는 원형
             &::before {
               position: absolute;
               content: '';
@@ -431,7 +415,6 @@ export default {
     }
   }
 
-  // 스케쥴 안내 부분
   &__body {
     margin: 2rem auto;
     width: 90%;
@@ -456,59 +439,6 @@ export default {
       hr {
         border: 0.5px solid var(--color-black);
         margin: 0.5rem 0 1rem 0;
-      }
-    }
-
-    // 스케쥴 카드 파트
-    .schedule-card {
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      background-color: var(--color-light-blue);
-      border-bottom: 1px solid var(--color-gray);
-      margin-bottom: 1px;
-      cursor: pointer;
-
-      &-container {
-        display: flex;
-        flex-direction: row;
-        background: none;
-      }
-      &-image {
-        display: flex;
-        width: 75px;
-        height: 75px;
-        justify-content: center;
-        align-items: center;
-        background: none;
-
-        i {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: url('@/assets/img_flitto.png');
-          background-size: cover;
-        }
-      }
-
-      &__content {
-        margin-left: 1rem;
-        font-size: var(--font-size-h5);
-        background: none;
-
-        &-title {
-          background: none;
-        }
-
-        &-time {
-          background: none;
-          margin-left: 0.5rem;
-        }
-
-        &-participant {
-          background: none;
-          margin-left: 0.5rem;
-        }
       }
     }
 
