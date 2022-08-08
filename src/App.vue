@@ -12,7 +12,7 @@ export default {
     }
   },
   mounted() {
-    if (this.url === 'http://localhost:8081/') {
+    if (this.url === 'http://localhost:8080/') {
       this.$router.push('login')
     }
   },
