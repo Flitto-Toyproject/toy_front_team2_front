@@ -186,6 +186,7 @@ export default {
   width: 100%;
   height: calc(100vh - 115px);
   background: none;
+  overflow-y: auto;
 
   // 헤더 부분
   &__header {
@@ -467,6 +468,7 @@ export default {
       background-color: var(--color-light-blue);
       border-bottom: 1px solid var(--color-gray);
       margin-bottom: 1px;
+      cursor: pointer;
 
       &-container {
         display: flex;
