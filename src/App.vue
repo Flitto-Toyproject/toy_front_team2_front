@@ -1,8 +1,23 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      url: window.location.href,
+    }
+  },
+  mounted() {
+    if (this.url === 'http://localhost:8081/') {
+      this.$router.push('login')
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 :root {
