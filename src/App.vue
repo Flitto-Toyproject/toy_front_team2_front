@@ -1,8 +1,23 @@
 <template>
   <div>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      url: window.location.href,
+    }
+  },
+  mounted() {
+    if (this.url === 'http://localhost:8080/') {
+      this.$router.push('login')
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 :root {
@@ -22,6 +37,7 @@
   --color-light-blue: #c3d8ec;
   --color-dark-gray: #585757;
   --color-gray: #969696;
+  --color-semi-gray: #cccccc;
   --color-light-gray: #f2f2f2;
   --color-green: #04ba33;
   --color-light-green: #e5f8eb;

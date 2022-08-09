@@ -3,21 +3,24 @@
     <article class="sidebar__menu">
       <div
         :class="{
-          'sidebar__menu-calendar': !isCalendar,
-          'sidebar__menu-calendar-clicked': isCalendar,
+          'sidebar__menu-calendar':
+            !isCalendar || (isCalendar && isOther === true),
+          'sidebar__menu-calendar-clicked': isCalendar && isOther === false,
         }"
         @click=";[$router.push('/main/calendar'), (isCalendar = true)]"
       >
         <i
+          class="sidebar__menu-calendar-icon"
           :class="{
-            'sidebar__menu-calendar-icon': !isCalendar,
-            'sidebar__menu-calendar-clicked-icon': isCalendar,
+            'sidebar__menu-calendar-clicked-icon':
+              isCalendar && isOther === false,
           }"
         />
         <span
+          class="sidebar__menu-calendar-text"
           :class="{
-            'sidebar__menu-calendar-text': !isCalendar,
-            'sidebar__menu-calendar-clicked-text': isCalendar,
+            'sidebar__menu-calendar-clicked-text':
+              isCalendar && isOther === false,
           }"
           >일정</span
         >
@@ -54,6 +57,7 @@
             :key="i"
             v-for="(friend, i) in friends"
             class="sidebar__friends-item"
+            @click="getFriendProfile(friend.id)"
           >
             <img class="sidebar__friends-item-img" :src="friend.img_url" />
             <span class="sidebar__friends-item-name">{{
@@ -71,22 +75,51 @@ export default {
     return {
       // 임시 데이터. 수정 필요함
       friends: [
-        { username: '이필웅', img_url: require('@/assets/img_flitto.png') },
-        { username: '김소현', img_url: require('@/assets/img_flitto.png') },
-        { username: '김효은', img_url: require('@/assets/img_flitto.png') },
-        { username: '김도경', img_url: require('@/assets/img_flitto.png') },
-        { username: '윤성철', img_url: require('@/assets/img_flitto.png') },
+        {
+          id: 0,
+          username: '이필웅',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 1,
+          username: '김소현',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 2,
+          username: '김효은',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 3,
+          username: '김도경',
+          img_url: require('@/assets/img_flitto.png'),
+        },
+        {
+          id: 4,
+          username: '윤성철',
+          img_url: require('@/assets/img_flitto.png'),
+        },
       ],
       toggle: false,
       isCalendar: true,
+      isOther: false,
       url: this.$route.path,
     }
   },
   mounted() {
-    console.log('url :', this.$route.path)
-    if (this.url.slice(0, 14) !== '/main/calendar') {
+    const url = this.url.slice(6)
+    if (url !== 'calendar' && url !== 'friend') {
+      this.isOther = true
+    } else if (url !== 'calendar' && url === 'friend') {
+      this.isOther = false
       this.isCalendar = false
     }
+  },
+  methods: {
+    getFriendProfile(id) {
+      this.$router.push(`/main/profile/${id}`)
+    },
   },
   watch: {},
 }
@@ -217,7 +250,7 @@ li {
         transition: 0.2s ease;
 
         &:hover {
-          background-color: rgba(70, 70, 70, 0.3);
+          background-color: var(--color-semi-gray);
           border-radius: 10px;
         }
 
@@ -245,7 +278,7 @@ li {
 
       &:hover {
         padding: 0.5rem;
-        background-color: var(--color-gray);
+        background-color: var(--color-semi-gray);
       }
 
       &-img {
@@ -257,9 +290,6 @@ li {
 
       &-name {
         background: none;
-        &:hover {
-          background: var(--color-gray);
-        }
       }
     }
   }
