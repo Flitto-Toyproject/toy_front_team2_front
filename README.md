@@ -113,9 +113,7 @@ $ npm install
 // localhost:8080 기준
 $ npm run serve
 
-
-[맨위로](#0-목차-📄)
-
 // Compiles and minifies for production
 $ npm run build
 ```
+[맨위로](#0-목차-📄)
