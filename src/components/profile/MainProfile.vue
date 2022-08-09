@@ -7,7 +7,7 @@
       <div class="profile__header-container">
         <!-- 프로필 이미지 -->
         <div class="profile-image-wrapper">
-          <div v-if="edit === false" class="profile-image-overlay" />
+          <div v-if="!edit" class="profile-image-overlay" />
           <div class="profile-image" />
         </div>
         <!-- 프로필 파트 -->
@@ -22,14 +22,14 @@
             />
             <button
               @click="this.edit = !this.edit"
-              v-if="edit === false"
+              v-if="!edit"
               class="profile-container__name-cancle"
             >
               취소
             </button>
             <button
               @click="this.edit = !this.edit"
-              v-if="edit === false"
+              v-if="!edit"
               class="profile-container__name-confirm"
             >
               확인
@@ -69,7 +69,7 @@
       </div>
       <!-- 스케쥴 카드 파트 -->
       <ScheduleCard
-        v-if="schedules && isPublic === true"
+        v-if="schedules && isPublic"
         :schedules="schedules"
         @click="$router.push('/main/alarm')"
       />
@@ -77,10 +77,7 @@
         <i class="schedule-empty-image" />
         <p class="schedule-empty-text">오늘 등록된 일정이 없습니다.</p>
       </div>
-      <div
-        v-if="isMine === false && isPublic === false"
-        class="schedule-public"
-      >
+      <div v-if="!isMine && !isPublic" class="schedule-public">
         <i class="schedule-public-image" />
         <p class="schedule-public-text">
           친구가 일정 공개를 비활성화 해놓은 상태입니다.
