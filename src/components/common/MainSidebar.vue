@@ -3,24 +3,21 @@
     <article class="sidebar__menu">
       <div
         :class="{
-          'sidebar__menu-calendar':
-            !isCalendar || (isCalendar && isOther === true),
-          'sidebar__menu-calendar-clicked': isCalendar && isOther === false,
+          'sidebar__menu-calendar': !isCalendar || isOther,
+          'sidebar__menu-calendar-clicked': isCalendar && !isOther,
         }"
         @click=";[$router.push('/main/calendar'), (isCalendar = true)]"
       >
         <i
           class="sidebar__menu-calendar-icon"
           :class="{
-            'sidebar__menu-calendar-clicked-icon':
-              isCalendar && isOther === false,
+            'sidebar__menu-calendar-clicked-icon': isCalendar && !isOther,
           }"
         />
         <span
           class="sidebar__menu-calendar-text"
           :class="{
-            'sidebar__menu-calendar-clicked-text':
-              isCalendar && isOther === false,
+            'sidebar__menu-calendar-clicked-text': isCalendar && !isOther,
           }"
           >일정</span
         >
