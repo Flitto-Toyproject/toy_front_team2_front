@@ -25,6 +25,7 @@ const routes = [
     name: 'Main',
     component: MainView,
     children: [
+      { path: 'profile', component: MainProfile },
       { path: 'profile/:id', component: MainProfile },
       { path: 'friend', component: MainFriend },
       { path: 'calendar', component: MainCalendar },
