@@ -37,6 +37,7 @@ export default {
   --color-light-blue: #c3d8ec;
   --color-dark-gray: #585757;
   --color-gray: #969696;
+  --color-semi-gray: #cccccc;
   --color-light-gray: #f2f2f2;
   --color-green: #04ba33;
   --color-light-green: #e5f8eb;
