@@ -161,9 +161,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-* {
-  background: none;
-}
 .profile {
   width: 100%;
   height: calc(100vh - 115px);

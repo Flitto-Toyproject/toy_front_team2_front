@@ -21,6 +21,7 @@ export default {
 .body {
   display: flex;
   flex-direction: column;
+  background: var(--color-light-gray);
 
   &__main {
     display: flex;
