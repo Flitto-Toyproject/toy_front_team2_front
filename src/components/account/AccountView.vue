@@ -1,8 +1,8 @@
 <template>
   <section class="account">
     <article class="account__header">
-      <h1 v-if="toggle === true" class="account__header-title">Log In</h1>
-      <h1 v-if="toggle === false" class="account__header-title">Sign In</h1>
+      <h1 v-if="toggle" class="account__header-title">Log In</h1>
+      <h1 v-else class="account__header-title">Sign In</h1>
       <p class="account__header-sub-title">
         Please fill your information below
       </p>
@@ -24,7 +24,7 @@
           placeholder="PASSWORD"
         />
       </label>
-      <label v-if="toggle === false" class="account__input-namelabel">
+      <label v-if="!toggle" class="account__input-namelabel">
         <input v-model="name" class="account__input-name" placeholder="NAME" />
       </label>
     </form>
@@ -34,25 +34,25 @@
       <i class="account__footer-kakao" />
       <button
         @click="$router.push('main/calendar')"
-        v-if="toggle === true"
+        v-if="toggle"
         class="account__footer-button"
       >
         <span>Log In</span>
       </button>
       <button
         @click="$router.push('login')"
-        v-if="toggle === false"
+        v-else
         class="account__footer-button"
       >
         <span>sign In</span>
       </button>
     </article>
     <hr />
-    <p class="account__notice" v-if="toggle === true">
+    <p class="account__notice" v-if="toggle">
       혹시 계정이 없으신가요 ??
       <span @click="$router.push('signin')">Sign in</span>
     </p>
-    <p class="account__notice" v-if="toggle === false">
+    <p class="account__notice" v-else>
       소셜 회원 가입은 원하시는 아이콘을 클릭하세요!
     </p>
   </section>
