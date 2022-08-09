@@ -83,22 +83,22 @@
     - ex> build: 버전업 (1.0.0 => 1.1.1)
 >## docs
   - 문서 수정
-    ex>  readme 문서에 실행 방법 추가
+    - ex> readme 문서에 실행 방법 추가
 >## feat
   - 새 기능(로직) 추가 
-    ex> feat: 아케이드 list API 추가
+    - ex> feat: 아케이드 list API 추가
 >## fix
   - 버그 수정(핫픽스, 픽스 브랜치)
-    ex> fix: 누락된 파라미터 추가
+    - ex> fix: 누락된 파라미터 추가
 >## refactor
   - 기능 추가나 버그 수정이 아닌 코드 변경, 디버그용 코드(console.log 등) 삭제
-    ex> refactor: 사용하지 않는 trCrowd 함수 제거
+    - ex> refactor: 사용하지 않는 trCrowd 함수 제거
 >## style
   - 코드 스타일 수정(컨벤션, 빈줄 제거 등)
-    ex> style: indent 수정
+    - ex> style: indent 수정
 >## test
   - 테스트 케이스 추가
-    ex> test: 전문교정 채팅 테스트 추가
+    - ex> test: 전문교정 채팅 테스트 추가
     
     
 [맨위로](#0-목차)
