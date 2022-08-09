@@ -108,13 +108,12 @@ export default {
     }
   },
   mounted() {
-    if (this.url.slice(0, 14) !== '/main/calendar') {
-      if (this.url.slice(0, 12) !== '/main/friend') {
-        this.isOther = true
-      } else {
-        this.isOther = false
-        this.isCalendar = false
-      }
+    const url = this.url.slice(6)
+    if (url !== 'calendar' && url !== 'friend') {
+      this.isOther = true
+    } else if (url !== 'calendar' && url === 'friend') {
+      this.isOther = false
+      this.isCalendar = false
     }
   },
   methods: {
@@ -251,7 +250,7 @@ li {
         transition: 0.2s ease;
 
         &:hover {
-          background-color: rgba(70, 70, 70, 0.2);
+          background-color: var(--color-semi-gray);
           border-radius: 10px;
         }
 
@@ -279,7 +278,7 @@ li {
 
       &:hover {
         padding: 0.5rem;
-        background-color: rgba(70, 70, 70, 0.2);
+        background-color: var(--color-semi-gray);
       }
 
       &-img {
