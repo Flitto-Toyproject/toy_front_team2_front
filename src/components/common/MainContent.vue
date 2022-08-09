@@ -24,6 +24,7 @@ export default {
   width: 78.5%;
   max-width: 1500px;
   background: var(--color-white);
+  overflow-y: hidden;
 
   article {
     background: none;
