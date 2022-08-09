@@ -3,7 +3,7 @@
     <article class="sidebar__menu">
       <div
         :class="{
-          'sidebar__menu-calendar': !isCalendar || (isCalendar && isOther),
+          'sidebar__menu-calendar': !isCalendar || isOther,
           'sidebar__menu-calendar-clicked': isCalendar && !isOther,
         }"
         @click=";[$router.push('/main/calendar'), (isCalendar = true)]"
