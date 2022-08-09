@@ -1,4 +1,4 @@
-<img src="역오수달.png" width=70% height=70%> 
+<img src="역오수달.png" width=60% height=60%> 
 
 <h1 style="border-bottom : none; font-weight:bold; font-size:40px">역삼의 오합지졸 수습 달력 🗓️ </h1>
 
