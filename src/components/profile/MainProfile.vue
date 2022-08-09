@@ -161,19 +161,19 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+* {
+  background: none;
+}
 .profile {
   width: 100%;
   height: calc(100vh - 115px);
-  background: none;
+
   overflow-y: auto;
 
   // 헤더 부분
   &__header {
-    background: none;
-
     // 타이틀
     &-title {
-      background: none;
       margin: 1rem;
       color: var(--color-blue);
       font-weight: bold;
@@ -184,10 +184,8 @@ export default {
     &-container {
       margin-top: 3rem;
       display: flex;
-      background: none;
 
       .profile-image-wrapper {
-        background: none;
         .profile-image-overlay {
           position: absolute;
           margin-left: 5rem;
@@ -221,17 +219,15 @@ export default {
       }
       // 프로필 파트
       .profile-container {
-        background: none;
         margin-left: 25px;
 
         &__name {
           display: flex;
           font-size: var(--font-size-h3);
-          background: none;
+
           font-weight: bold;
 
           &-color {
-            background: none;
             color: var(--color-blue);
             margin-right: 0.5rem;
           }
@@ -304,7 +300,6 @@ export default {
           margin-top: 1rem;
           color: var(--color-gray);
           font-weight: bold;
-          background: none;
         }
 
         &__pwchange {
@@ -312,7 +307,7 @@ export default {
           color: var(--color-gray);
           font-weight: bold;
           cursor: pointer;
-          background: none;
+
           text-decoration: underline;
         }
 
@@ -362,7 +357,6 @@ export default {
           display: inline-block;
           width: 60px;
           height: 28px;
-          background: none;
 
           &-input {
             opacity: 0;
@@ -412,13 +406,9 @@ export default {
   &__body {
     margin: 2rem auto;
     width: 90%;
-    background: none;
 
     &-title {
-      background: none;
-
       p {
-        background: none;
         font-size: var(--font-size-h5);
         font-weight: bold;
 
@@ -426,7 +416,6 @@ export default {
           color: var(--color-blue);
           font-weight: bold;
           font-size: var(--font-size-h5);
-          background: none;
         }
       }
 
@@ -443,7 +432,6 @@ export default {
       min-height: 400px;
       justify-content: center;
       align-items: center;
-      background: none;
 
       &-image {
         display: block;
@@ -455,7 +443,7 @@ export default {
 
       &-text {
         text-align: center;
-        background: none;
+
         color: var(--color-gray);
       }
     }
@@ -467,7 +455,6 @@ export default {
       min-height: 400px;
       justify-content: center;
       align-items: center;
-      background: none;
 
       &-image {
         display: block;
@@ -479,7 +466,6 @@ export default {
 
       &-text {
         text-align: center;
-        background: none;
         color: var(--color-gray);
       }
     }
