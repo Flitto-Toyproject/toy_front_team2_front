@@ -71,7 +71,6 @@
       <ScheduleCard
         v-if="schedules && isPublic === true"
         :schedules="schedules"
-        :getParticipant="this.getParticipant"
         @click="$router.push('/main/alarm')"
       />
       <div v-if="schedules.length === 0" class="schedule-empty">
@@ -148,12 +147,7 @@ export default {
         week[date.getDay()]
       )
     },
-    getParticipant(iterable) {
-      const allParticipant = iterable.reduce((prev, cur) => {
-        return prev + ' ' + cur
-      })
-      return allParticipant
-    },
+
     toggleInput() {
       this.toggle = !this.toggle
     },

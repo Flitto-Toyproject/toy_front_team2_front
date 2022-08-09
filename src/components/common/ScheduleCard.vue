@@ -22,10 +22,17 @@
 export default {
   props: {
     schedules: Object,
-    getParticipant: Function,
   },
   data() {
     return {}
+  },
+  methods: {
+    getParticipant(iterable) {
+      const allParticipant = iterable.reduce((prev, cur) => {
+        return prev + ' ' + cur
+      })
+      return allParticipant
+    },
   },
 }
 </script>
