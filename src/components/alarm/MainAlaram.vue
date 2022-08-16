@@ -8,7 +8,7 @@
           <span class="menubox-friend">친구</span> |
           <span class="menubox-schedule">일정</span>
         </div>
-        <div class="menubox-read-all">알림 전체 읽기</div>
+        <div class="menubox-read-all" @click="alramReadAll">알림 전체 읽기</div>
       </div>
       <!-- 바디 부분 -->
       <article class="alarm__body">
@@ -33,7 +33,7 @@
             <div class="alarm__body-card-content" v-if="task.type === '친구'">
               <p>{{ task.from }}님이 회원님을 친구 추가 하였습니다.</p>
               <p class="card-content-announce">
-                {{ task.type }} <span>| {{ '오늘' }}</span>
+                {{ task.type }} <span>| {{ date }}</span>
               </p>
             </div>
             <!-- 일정 추가일 경우 -->
@@ -41,7 +41,7 @@
               <p>{{ task.from }}님이 회원님을 추가하였습니다.</p>
               <p>{{ task.council }}{{ task.content }}({{ task.time }})</p>
               <p class="card-content-announce">
-                {{ task.type }} <span>| {{ '오늘' }}</span>
+                {{ task.type }} <span>| {{ date }}</span>
               </p>
             </div>
           </div>
@@ -110,7 +110,19 @@ export default {
           ],
         },
       ],
+      date: '오늘',
+      menu: 'all',
     }
+  },
+  methods: {
+    // Axios 활용하는 로직으로 변경 예정
+    alramReadAll() {
+      for (let schedule of this.schedules) {
+        for (let task of schedule.body) {
+          task.read = false
+        }
+      }
+    },
   },
 }
 </script>
@@ -122,6 +134,7 @@ export default {
   height: 110px;
   border-bottom: 1px solid var(--color-gray);
   background: var($card);
+  cursor: pointer;
 
   &:last-child {
     margin-bottom: 2.5em;
@@ -169,6 +182,10 @@ export default {
 
         .menubox-schedule {
           margin-left: 0.5em;
+          cursor: pointer;
+        }
+        .clicked {
+          color: var(--color-blue);
           cursor: pointer;
         }
       }
