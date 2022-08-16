@@ -25,6 +25,7 @@
             :class="{ 'alarm__body-card-box-clicked': !task.read }"
             v-for="(task, i) in schedule.body"
             :key="i"
+            @click="clickItem(task)"
           >
             <!-- 아이콘 및 프로필 -->
             <i class="alarm__body-card-icon" />
@@ -86,7 +87,7 @@ export default {
             {
               type: '친구',
               from: '김도경',
-              read: false,
+              read: true,
               porfileUrl: require('../../assets/img_flitto.png'),
             },
             {
@@ -95,7 +96,7 @@ export default {
               council: '[아고라]',
               content: '토이 프로젝트 미팅',
               time: '오후 14:00 - 오후 15:00',
-              read: false,
+              read: true,
               porfileUrl: require('../../assets/img_flitto.png'),
             },
             {
@@ -104,7 +105,7 @@ export default {
               council: '[독도]',
               content: '토이 프로젝트 미팅',
               time: '오후 15:00 - 오후 16:00',
-              read: false,
+              read: true,
               porfileUrl: require('../../assets/img_flitto.png'),
             },
           ],
@@ -122,6 +123,11 @@ export default {
           task.read = false
         }
       }
+    },
+    // Axios 활용하는 로직으로 변경 예정
+    clickItem(task) {
+      console.log(task.read)
+      task.read = false
     },
   },
 }
