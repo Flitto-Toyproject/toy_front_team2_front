@@ -114,6 +114,7 @@ export default {
     color: var(--color-blue);
     cursor: pointer;
     transition: 0.2s all;
+    background: none;
 
     &:hover {
       background-color: var(--color-blue);
