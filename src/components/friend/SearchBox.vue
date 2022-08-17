@@ -5,19 +5,30 @@
       <input
         type="text"
         class="friend-header__search-input"
-        v-model="search_value"
+        v-model="searchValue"
         placeholder="이름, 아이디로 검색"
+        @keyup.enter="searchFriend"
       />
     </div>
-    <i class="friend-header__search-cancel-icon"></i>
+    <i @click="resetSearchValue" class="friend-header__search-cancel-icon"></i>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      search_value: '',
+      searchValue: '',
     }
+  },
+  methods: {
+    searchFriend() {
+      //API 호출 및 vuex 처리로직 들어갈 예정
+      console.log(this.searchValue)
+      this.searchValue = ''
+    },
+    resetSearchValue() {
+      this.searchValue = ''
+    },
   },
 }
 </script>
@@ -38,6 +49,7 @@ input {
 
 .friend-header__search-wrapper {
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -66,9 +78,10 @@ input {
   width: 15px;
   height: 15px;
   margin: 0px 10px;
-  mask-image: url('@/assets/svg/ic_friend_find-white.svg');
+  mask-image: url('@/assets/svg/ic_xmark.svg');
   mask-repeat: no-repeat;
-  mask-size: 100%;
+  mask-size: 70%;
   background-color: var(--color-semi-gray);
+  cursor: pointer;
 }
 </style>
