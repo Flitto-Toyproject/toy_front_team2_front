@@ -66,6 +66,7 @@
       <div class="profile__body-title">
         <p><span>Today.</span> {{ getToday() }}</p>
         <hr />
+        {{ this.$store.state.friendList }}
       </div>
       <!-- 스케쥴 카드 파트 -->
       <ScheduleCard
@@ -91,6 +92,7 @@
 <script>
 import ProfileModal from '../modal/ProfileModal.vue'
 import ScheduleCard from '../common/ScheduleCard.vue'
+import { mapActions } from 'vuex'
 export default {
   components: { ProfileModal, ScheduleCard },
   data() {
@@ -122,7 +124,15 @@ export default {
       modal: false,
     }
   },
+  mounted() {
+    const obj = {
+      p1: 200,
+      p2: 400,
+    }
+    this.FETCH_FRIENDLIST(obj)
+  },
   methods: {
+    ...mapActions(['FETCH_FRIENDLIST']),
     getToday() {
       const date = new Date()
       const week = [
