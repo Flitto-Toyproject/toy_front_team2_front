@@ -52,7 +52,7 @@ div {
 .modal-frame {
   margin: auto;
   width: 410px;
-  height: 400px;
+  height: 430px;
   background: var(--color-white);
   border-radius: 10px;
 }

@@ -19,7 +19,7 @@ export default {
 .content {
   display: flex;
   flex-direction: column;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   min-height: calc(100vh - 115px);
   width: 78.5%;
   max-width: 1500px;
